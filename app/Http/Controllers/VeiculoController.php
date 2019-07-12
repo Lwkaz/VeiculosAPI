@@ -44,9 +44,9 @@ class VeiculoController extends Controller
             $veiculo->tipo_veiculo = $request->input('tipo_veiculo');
             $veiculo->imagem = $request->input('imagem');
             $veiculo->save();
-            //return "Ok";
+            return "Ok";
         } catch (Exception $e) {
-            //return $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -88,14 +88,24 @@ class VeiculoController extends Controller
     public function update(Request $request, $id)
     {
         //$idveiculo = $request->input('id');
-        $veiculo = Veiculo::find($id);
-        if(isset($veiculo)){
-            $veiculo->ano_lancamento = $request->input('ano_lancamento');
-            $veiculo->marca = $request->input('marca');
-            $veiculo->descricao = $request->input('descricao');
-            $veiculo->tipo_veiculo = $request->input('tipo_veiculo');
-            $veiculo->imagem = $request->input('imagem');
-            $veiculo->save();
+        try{
+            $veiculo = Veiculo::find($id);
+            if(isset($veiculo)){
+                $veiculo->ano_lancamento = $request->input('ano_lancamento');
+                $veiculo->marca = $request->input('marca');
+                $veiculo->descricao = $request->input('descricao');
+                $veiculo->tipo_veiculo = $request->input('tipo_veiculo');
+                $veiculo->imagem = $request->input('imagem');
+
+                $marca = Marca::find($veiculo->marca);
+                $marca->nome = $request->input('nome_marca');
+
+                $veiculo->save();
+                $marca->save();
+                return "Ok";
+            }
+        } catch(Exception $e) {
+                return "Not Ok";
         }
     }
 
