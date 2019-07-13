@@ -44,7 +44,7 @@ class VeiculoController extends Controller
             $veiculo->tipo_veiculo = $request->input('tipo_veiculo');
             $veiculo->imagem = $request->input('imagem');
             $veiculo->save();
-            return "Ok";
+            return array();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -75,7 +75,7 @@ class VeiculoController extends Controller
      */
     public function edit($id)
     {
-        
+        return $id;
     }
 
     /**
@@ -102,10 +102,10 @@ class VeiculoController extends Controller
 
                 $veiculo->save();
                 $marca->save();
-                return "Ok";
+                return array();
             }
         } catch(Exception $e) {
-                return "Not Ok";
+                return array();
         }
     }
 

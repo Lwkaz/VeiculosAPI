@@ -24,3 +24,4 @@ Route::post('/veiculo/store', 'VeiculoController@store');
 Route::get('/marcas/listartodas', 'MarcaController@getAll');
 Route::post('/marcas/store', 'MarcaController@store');
 Route::get('/veiculo/deletar/{id}', 'VeiculoController@destroy');
+Route::get('/veiculo/edit/{id}', 'VeiculoController@edit');

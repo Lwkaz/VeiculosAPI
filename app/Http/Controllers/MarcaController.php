@@ -40,7 +40,7 @@ class MarcaController extends Controller
             $marca->nome = $request->input('nome');
             $marca->descricao = $request->input('descricao');
             $marca->save();
-            //return "Ok";
+            return array();
         } catch (Exception $e) {
             //return $e->getMessage();
         }
